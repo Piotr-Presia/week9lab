@@ -118,5 +118,57 @@ function paperRock(id) {
             p2 + " choice: " + compP + "\n\n" +
             "The winner is: " + winner);
     }
+}
 
+function subjects() {
+
+    //VARIABLES
+    var grade = 0;              //GRADE FOR A SUBJECT
+    var average = 0;     //AVERAGE FOR ALL SUBJECTS
+    var total = 0;        //SUM OF ALL GRADES
+    var mark = "";            //ASSIGNED LETTER ACCORDING TO GRADE
+
+    //INPUT
+    var numerOfSubjects = prompt("Enter number of subjects taken: ");
+
+    //MAIN LOOP GETS SUM OF GRADES FOR ALL SUBJECT 'TOTAL'
+    for (i = 1; i <= numerOfSubjects; i++) {
+
+        grade = prompt("Enter grade for Subject " + i + "\n(0 - 100): ");
+
+        //SIMPLE ERROR CHECKING (ONLY ACCEPTS VALUES FROM 0 TO 100)
+        if (grade < 0 || grade > 100) {
+            prompt("Wrong number.\nEnter only values from 1 to 100\nTry again");
+            i = i - 1;  //COUNTER RESET
+        } else {
+            total = total + grade;
+        }
+    }
+    // OUR FINAL AVERAGE
+    average = total / numerOfSubjects;
+
+    // OUR LETTER GRADE
+    mark = compute(average);
+
+    //SOLUTION
+    window.alert("Average grade for all subjects: " + average + "\nLetter grade: " + mark);
+    document.getElementById("result3").innerHTML = ("Average grade for all subjects: " + average + "\nLetter grade: " + mark);
+}
+
+//ASSIGN A LETTER ACCORDING TO AVERAGE 'TOTAL'
+// ACCORDING TO https://www.omnicalculator.com/other/grade
+function compute(total) {
+
+    if (total <= 60) {
+        mark = "F";
+    } else if (total > 60 && total <= 69) {
+        mark = "D";
+    } else if (total > 69 && total <= 79) {
+        mark = "C";
+    } else if (total > 79 && total <= 90) {
+        mark = "B";
+    } else if (total > 90 && total <= 100) {
+        mark = "A";
+    }
+    return mark;
 }
