@@ -33,3 +33,15 @@ button:hover {
     background-color: green;
 
 }
+
+span {
+    font-weight: bolder;
+    color: darkred;
+    font-style: italic;
+    border-style: dashed;
+    border-width: 1px;
+}
+
+span:hover {
+    font-size: 150%;
+}

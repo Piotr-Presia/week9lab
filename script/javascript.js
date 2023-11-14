@@ -31,6 +31,10 @@ function paperRock(id) {
 
     for (i = 0; i < 3; i++) {
         input(id);
+        if (winner == p1) {
+            //"PLAYER";
+            i = 10;
+        }
     }
 
     //INPUT
