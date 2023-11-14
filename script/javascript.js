@@ -153,7 +153,7 @@ function paperRock(id) {
             }
         }
         // OUR FINAL AVERAGE
-        average = (total / numerOfSubjects);
+        average = parseInt(total / numerOfSubjects);
 
         // OUR LETTER GRADE
         mark2 = compute(average);
