@@ -1,4 +1,4 @@
-
+// ####### Question 1 ############
 function song() {
 
     var song = "";
@@ -21,6 +21,7 @@ function song() {
     document.getElementById("song").innerHTML = song;
 }
 
+// ####### Question 2 ############
 function paperRock(id) {
 
     var winner = "";
@@ -120,55 +121,64 @@ function paperRock(id) {
     }
 }
 
-function subjects() {
+{// ####### Question 3 ############
+    function subjects() {
 
-    //VARIABLES
-    var grade = 0;              //GRADE FOR A SUBJECT
-    var average = 0;     //AVERAGE FOR ALL SUBJECTS
-    var total = 0;        //SUM OF ALL GRADES
-    var mark = "";            //ASSIGNED LETTER ACCORDING TO GRADE
+        //VARIABLES
+        var grade = 0;              //GRADE FOR A SUBJECT
+        var average = 0;     //AVERAGE FOR ALL SUBJECTS
+        var total = 0;        //SUM OF ALL GRADES
+        var mark = "";            //ASSIGNED LETTER ACCORDING TO GRADE
+        var display = "";
+        var numerOfSubjects = 0;
 
-    //INPUT
-    var numerOfSubjects = prompt("Enter number of subjects taken: ");
+        //INPUT
 
-    //MAIN LOOP GETS SUM OF GRADES FOR ALL SUBJECT 'TOTAL'
-    for (i = 1; i <= numerOfSubjects; i++) {
-
-        grade = prompt("Enter grade for Subject " + i + "\n(0 - 100): ");
-
-        //SIMPLE ERROR CHECKING (ONLY ACCEPTS VALUES FROM 0 TO 100)
-        if (grade < 0 || grade > 100) {
-            prompt("Wrong number.\nEnter only values from 1 to 100\nTry again");
-            i = i - 1;  //COUNTER RESET
-        } else {
-            total = total + grade;
+        while (numerOfSubjects <= 0 || isNaN(numerOfSubjects)) {
+            numerOfSubjects = parseInt(prompt("Enter number of subjects taken: "));
         }
+
+        //MAIN LOOP GETS SUM OF GRADES FOR ALL SUBJECT 'TOTAL'
+        for (i = 1; i <= numerOfSubjects; i++) {
+
+            grade = parseInt(prompt("Enter grade for Subject " + i + "\n(0 - 100): "));
+
+            //SIMPLE ERROR CHECKING (ONLY ACCEPTS VALUES FROM 0 TO 100)
+            if (grade < 0 || grade > 100) {
+                prompt("Wrong number.\nEnter only values from 1 to 100\nTry again");
+                i = i - 1;  //COUNTER RESET
+            } else {
+                total = total + grade;
+                display = display + "Subject " + i + ": " + " Mark: " + grade + " Grade " + compute(grade) + "<br>";
+            }
+        }
+        // OUR FINAL AVERAGE
+        average = (total / numerOfSubjects);
+
+        // OUR LETTER GRADE
+        mark2 = compute(average);
+
+        //SOLUTION
+        //window.alert("Average grade for all subjects: " + average + "\nLetter grade: " + mark);
+        document.getElementById("result3").innerHTML = display;
+        document.getElementById("resultTotal").innerHTML = ("Average mark for all subjects: " + average + "\nGrade: " + mark2);
     }
-    // OUR FINAL AVERAGE
-    average = total / numerOfSubjects;
 
-    // OUR LETTER GRADE
-    mark = compute(average);
+    //ASSIGN A LETTER ACCORDING TO AVERAGE 'TOTAL'
+    // ACCORDING TO https://www.omnicalculator.com/other/grade
+    function compute(totalG) {
 
-    //SOLUTION
-    window.alert("Average grade for all subjects: " + average + "\nLetter grade: " + mark);
-    document.getElementById("result3").innerHTML = ("Average grade for all subjects: " + average + "\nLetter grade: " + mark);
-}
+        if (totalG <= 60) {
+            return "F";
+        } else if (totalG > 60 && totalG <= 69) {
+            return "D";
+        } else if (totalG > 69 && totalG <= 79) {
+            return "C";
+        } else if (totalG > 79 && totalG <= 90) {
+            return "B";
+        } else if (totalG > 90 && totalG <= 100) {
+            return "A";
+        }
 
-//ASSIGN A LETTER ACCORDING TO AVERAGE 'TOTAL'
-// ACCORDING TO https://www.omnicalculator.com/other/grade
-function compute(total) {
-
-    if (total <= 60) {
-        mark = "F";
-    } else if (total > 60 && total <= 69) {
-        mark = "D";
-    } else if (total > 69 && total <= 79) {
-        mark = "C";
-    } else if (total > 79 && total <= 90) {
-        mark = "B";
-    } else if (total > 90 && total <= 100) {
-        mark = "A";
     }
-    return mark;
 }
